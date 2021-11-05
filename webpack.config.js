@@ -12,8 +12,8 @@ module.exports = (env, argv)=>{
   console.log('development: ', isDev);
   console.log('production: ', isProd);
 
-  const getFileName = (ext) => {
-      isProd ? `[name].[contenthash].bundle.${ext}`:`[name].bundle.${ext}`;
+  const getFileName = (ext)=> {
+    return isProd ? `[name].[contenthash].bundle.${ext}`:`[name].bundle.${ext}`;
   };
 
   const getPlugins = () => {
