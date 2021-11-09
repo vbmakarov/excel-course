@@ -60,8 +60,8 @@ module.exports = (env, argv)=>{
     resolve: {
       extensions: ['.js'],
       alias: {
-        '@': path.dirname(__dirname, 'src'),
-        '@core': path.dirname(__dirname, 'core'),
+        '@': path.join(__dirname, 'src'),
+        '@core': path.join(__dirname, 'src/core'),
       },
     },
     devServer: {
@@ -96,6 +96,7 @@ module.exports = (env, argv)=>{
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties']
             },
           },
         },
