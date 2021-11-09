@@ -12,10 +12,10 @@ export class Excel {
       const elem = $.create('div', Component.className)
       const component = new Component(elem)
       // DEBUG
-      if (component.name) {
-        console.log(component.name)
-        window['c' + component.name] = component
-      }
+      // if (component.name) {
+      //   console.log(component.name)
+      //   window['c' + component.name] = component
+      // }
       elem.html(component.toHtml())
       $root.append(elem)
       return component;
