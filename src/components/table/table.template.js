@@ -3,18 +3,26 @@ const CODE = {
   Z: 90
 }
 
-function createCell(content) {
-  return `<div class="cell" contenteditable="true">${content}</div>`
+function createCell(content, index) {
+  return `<div class="cell" contenteditable="true" 
+        data-index = ${String.fromCharCode(CODE.A + index)}>${content}</div>`
 }
 
 function createColumn(content) {
-  return `<div class="column">${content}</div>`
+  return `<div class="column" data-resizer = "reizer">
+            ${content}
+            <div class="col-resize" data-resize = "col"></div>
+          </div>`
 }
 
 function createRow(columns, index = '') {
-  return `<div class="row">
+  return `<div class="row" data-resizer = "reizer">
             <div class="row__info">
-                ${index}
+                ${
+                index?
+                    index + '<div class="row-resize" data-resize = "row">' +
+                    '</div>':
+                    ''}
             </div>
             <div class="row__data">
                 ${columns}
