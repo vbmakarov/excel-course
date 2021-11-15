@@ -30,6 +30,38 @@ class Dom {
     this.$elem.removeEventListener(eventType, callback)
   }
 
+  closest($selector) {
+    return $(this.$elem.closest($selector))
+  }
+
+  get data() {
+    return this.$elem.dataset
+  }
+
+  findAll($selector) {
+    return this.$elem.querySelectorAll($selector)
+  }
+
+  getCoords() {
+    return this.$elem.getBoundingClientRect()
+  }
+
+  getText() {
+    return this.$elem.textContent
+  }
+
+  css(styles = {}, remove) {
+    if (remove) {
+      this.$elem.removeAttribute('style')
+      return
+    }
+    Object
+        .keys(styles)
+        .forEach((key)=> {
+          this.$elem.style[key] = styles[key]
+        })
+  }
+
   clear() {
     this.html('')
     return this
