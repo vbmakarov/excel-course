@@ -3,13 +3,14 @@ const CODE = {
   Z: 90
 }
 
-function createCell(content, index) {
-  return `<div class="cell" contenteditable="true" 
-        data-index = ${String.fromCharCode(CODE.A + index)}>${content}</div>`
+function createCell(row, index) {
+  return `<div class="cell" contenteditable="true" data-type="cell"
+  data-index = ${index} 
+  data-id =${index}:${row}></div>`
 }
 
-function createColumn(content) {
-  return `<div class="column" data-resizer = "reizer">
+function createColumn(content, index) {
+  return `<div class="column" data-resizer = "reizer" data-index = ${index}>
             ${content}
             <div class="col-resize" data-resize = "col"></div>
           </div>`
@@ -45,13 +46,13 @@ export function createTable(rowsCount = 15) {
       .join('')
   rows.push(createRow(columns))
 
-  const cells = new Array(countCodes)
-      .fill('')
-      .map(createCell)
-      .join('')
 
-  for (let i = 1; i <= rowsCount; i++) {
-    rows.push(createRow(cells, i))
+  for (let row = 1; row <= rowsCount; row++) {
+    const cells = new Array(countCodes)
+        .fill('')
+        .map((_, index) => createCell(row, index))
+        .join('')
+    rows.push(createRow(cells, row))
   }
 
   return rows.join('')
