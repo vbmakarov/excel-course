@@ -75,7 +75,8 @@
 
     & .selected{
       outline: 2px solid $primary-color;
-      border: 0;
+      border: none;
+      z-index:2;
     }
 
   & .col-resize, & .row-resize{

@@ -38,6 +38,10 @@ class Dom {
     return this.$elem.dataset
   }
 
+  find($selector) {
+    return $(this.$elem.querySelector($selector))
+  }
+
   findAll($selector) {
     return this.$elem.querySelectorAll($selector)
   }
@@ -46,9 +50,13 @@ class Dom {
     return this.$elem.getBoundingClientRect()
   }
 
-  getText() {
-    return this.$elem.textContent
+  text(text) {
+    if (typeof text === 'string') {
+      this.$elem.textContent =text
+    }
+    return this.$elem.textContent.trim()
   }
+
 
   css(styles = {}, remove) {
     if (remove) {
@@ -60,6 +68,25 @@ class Dom {
         .forEach((key)=> {
           this.$elem.style[key] = styles[key]
         })
+  }
+
+  addClass(className) {
+    this.$elem.classList.add(className)
+    return this
+  }
+
+  removeClass(className) {
+    this.$elem.classList.remove(className)
+    return this
+  }
+
+  id() {
+    return this.$elem.dataset.id
+  }
+
+  focus() {
+    this.$elem.focus()
+    return this
   }
 
   clear() {

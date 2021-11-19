@@ -10,7 +10,7 @@ export function resize(event, $root) {
   let value = ''
   if (type == 'col') {
     cells = $root.findAll(
-        `[data-index=${$parent.getText()}]`)
+        `[data-index="${$parent.data.index}"]`)
     $resizer.css({height: '100vh'})
   } else {
     $resizer.css({width: '100vw'})
