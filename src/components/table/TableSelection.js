@@ -18,15 +18,14 @@ export class TableSelection {
       this.lastSelectedElems.forEach((elem) => {
         elem.removeClass(TableSelection.className)
       })
+      this.lastSelectedElems = []
     }
   }
 
   selectGroup($group = []) {
     this.clear()
     this.lastSelectedElems = $group
-    console.log($group)
     this.lastSelectedElems.forEach((elem)=>{
-      console.log(elem)
       elem.addClass(TableSelection.className)
     })
   }
@@ -54,6 +53,10 @@ export class TableSelection {
     const cell = $root.find(`[data-id="${newCellId}"]`)
     this.select(cell)
     return cell
+  }
+
+  applyStyles(style) {
+    this.lastSelectedElems.forEach(($el) => $el.css(style))
   }
 }
 

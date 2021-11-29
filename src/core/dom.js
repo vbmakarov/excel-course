@@ -38,6 +38,14 @@ class Dom {
     return this.$elem.dataset
   }
 
+  attr(name, value) {
+    if (value) {
+      this.$elem.setAttribute(name, value)
+      return this
+    }
+    return this.$elem.getAttribute(name)
+  }
+
   find($selector) {
     return $(this.$elem.querySelector($selector))
   }
@@ -50,8 +58,12 @@ class Dom {
     return this.$elem.getBoundingClientRect()
   }
 
+  get getValue() {
+    return this.$elem.value
+  }
+
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$elem.textContent =text
     }
     return this.$elem.textContent.trim()
@@ -68,6 +80,15 @@ class Dom {
         .forEach((key)=> {
           this.$elem.style[key] = styles[key]
         })
+  }
+
+  getStyles(styles =[]) {
+    return styles.reduce((obj, s) => {
+      if (this.$elem.style[s]) {
+        obj[s] = this.$elem.style[s]
+      }
+      return obj
+    }, {})
   }
 
   addClass(className) {
