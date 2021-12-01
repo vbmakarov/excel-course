@@ -1,13 +1,16 @@
 class Dom {
   constructor(selector) {
-    this.$elem = typeof selector === 'string'?
-        document.createElement(selector) :
+    this.$elem = typeof selector === 'string' ?
+        document.querySelector(selector) :
         selector
   }
 
   html(html) {
-    this.$elem.innerHTML = html
-    return this;
+    if (typeof html === 'string') {
+      this.$elem.innerHTML = html
+      return this
+    }
+    return this.$elem.outerHTML.trim()
   }
 
   append(node) {
@@ -120,11 +123,11 @@ export function $(elem) {
   return new Dom(elem)
 }
 
-$.create = function(selector, className) {
-  const elem = document.createElement(selector)
-  if (className) {
-    elem.classList.add(className)
+$.create = (tagName, classes = '') => {
+  const el = document.createElement(tagName)
+  if (classes) {
+    el.classList.add(classes)
   }
-  return $(elem)
+  return $(el)
 }
 

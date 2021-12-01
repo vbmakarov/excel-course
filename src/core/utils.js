@@ -23,6 +23,10 @@ export function storage(key, data = null) {
   localStorage.setItem(key, JSON.stringify(data))
 }
 
+export function removeStorage(key) {
+  localStorage.removeItem(key)
+}
+
 export function isEquals(a, b) {
   if (typeof a === 'object' && typeof b === 'object') {
     return JSON.stringify(a) === JSON.stringify(b)
@@ -40,4 +44,13 @@ export function debounce(fn, interval) {
     clearInterval(timeOut)
     timeOut = setTimeout(later, interval)
   }
+}
+
+export function getNewObj(obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
+
+export function getDate(stringNum) {
+  const date = new Date(+stringNum)
+  return date.toLocaleDateString() + '  ' + date.toLocaleTimeString()
 }
