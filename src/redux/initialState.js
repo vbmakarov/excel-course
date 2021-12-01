@@ -1,5 +1,5 @@
-import {storage} from '@core/utils';
-import {defaultStyles} from '@/constants';
+import {getNewObj, storage} from '@core/utils';
+import {defaultStyles, defaultTitle} from '@/constants';
 
 const defaultState = {
   rowstate: {},
@@ -7,8 +7,15 @@ const defaultState = {
   dataState: {},
   currentText: '',
   applyStyles: {},
+  title: defaultTitle,
+  data: '',
   changeStyles: defaultStyles,
 }
 
-export const initialState = storage('excel-course')?
-    storage('excel-course') : defaultState
+// export const initialState = storage('excel-course')?
+//     storage('excel-course') : getNewObj(defaultState)
+
+export function normalizeState(param) {
+  return storage(param)?
+      storage(param) : getNewObj(defaultState)
+}
